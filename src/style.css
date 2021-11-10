@@ -17,14 +17,15 @@
 		flex-direction: column;
 		width: 80%;
 		pointer-events: auto;
-		background-color: #ced4da;
+		background-color: #7DC6E0;
 		background-clip: padding-box;
 		border: 1px solid rgba(0,0,0,.2);
 		border-radius: 1.1rem;
 		outline: 0;
-		height: 20.5rem;
+		height: 22.5rem;
 		 }
          .tx-tfm{
+         	margin-top: 30px;
          text-transform:uppercase;
          }
          .mybtn{

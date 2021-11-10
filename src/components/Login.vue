@@ -13,14 +13,16 @@
                      <form action=""  name="login">
                              <div class="form-group">
                                 <label for="exampleInputEmail1">Username</label>
-                                <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                                <input v-model="username" type="text" name="username"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter username">
                              </div>
                              <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
-                                <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                                <input v-model="password" type="password"  name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
                              </div>
                              <div class="col-md-12 text-center ">
-                                <button type="submit" class=" btn btn-block mybtn btn-secondary tx-tfm">Login</button>
+                               <router-link to="/">
+                                   <button @click="login" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                               </router-link>
                              </div>                          
                           </form>
                          
@@ -34,17 +36,36 @@
 <script>
 export default {
   name: 'Login',
-  created() {
-
-  },
+  
   data() {
     return {
+    is_logged : true,
+    username: '',
+    password:'',
+    errorMessage:"",
     }
   },
   props: {
    
   },
   methods: {
+    login(){
+
+  const utilisateur  = this.$store.state.liste_users.filter(user => user.username == this.username 
+                                        && user.password == this.password)
+    //console.log(utilisateur)
+    if(utilisateur.length > 0){
+      const new_user = {
+        username : this.username,
+        password : this.password
+      }
+      localStorage.setItem('user', new_user)
+      window.location.reload();
+    }else{
+      this.errorMessage = "User not found "
+    }
+    
+  }
    
   },
 }
